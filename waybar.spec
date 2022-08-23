@@ -36,7 +36,7 @@ Customizable Wayland bar for Sway and Wlroots based compositors
 %prep
 %setup -q -n Waybar-%{version}
 # fix resources path
-sed -i 's|"./resources/"|"./resources/", "/opt/3rd-party/bundles/clearfraction/usr/share/waybar"|g' src/config.cpp
+sed -i 's|"./resources/"|"./resources/", "/opt/3rd-party/bundles/clearfraction/usr/share/xdg/waybar"|g' src/config.cpp
 
 %build
 export LANG=C.UTF-8
@@ -54,10 +54,10 @@ ninja -v -C builddir
 %install
 DESTDIR=%{buildroot} ninja -C builddir install
 rm -rf %{buildroot}/usr/share/man
-cp -r resources %{buildroot}/usr/share/waybar
+cp -r resources/* %{buildroot}/usr/share/xdg/waybar/
 
 %files
 %defattr(-,root,root,-)
 /usr/bin/waybar
 /usr/lib/systemd/user/waybar.service
-/usr/share/waybar
+/usr/share/xdg/waybar
