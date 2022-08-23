@@ -54,7 +54,7 @@ ninja -v -C builddir
 %install
 DESTDIR=%{buildroot} ninja -C builddir install
 rm -rf %{buildroot}/usr/share/man
-cp -r resources/* %{buildroot}/usr/share/xdg/waybar/
+mkdir -p %{buildroot}/usr/share/xdg/waybar && cp -r resources/* %{buildroot}/usr/share/xdg/waybar/
 
 %files
 %defattr(-,root,root,-)
