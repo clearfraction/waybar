@@ -38,6 +38,7 @@ Customizable Wayland bar for Sway and Wlroots based compositors
 sed -i 's|"./resources/"|"./resources/", "/opt/3rd-party/bundles/clearfraction/usr/share/xdg/waybar"|g' src/config.cpp
 
 %build
+unset http_proxy https_proxy no_proxy
 export LANG=C.UTF-8
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
