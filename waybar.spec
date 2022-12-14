@@ -1,5 +1,5 @@
 Name     : waybar
-Version  : 0.9.13
+Version  : 0.9.16
 Release  : 1
 URL      : https://github.com/Alexays/Waybar
 Source0  : https://github.com/Alexays/Waybar/archive/refs/tags/%{version}.tar.gz
@@ -54,14 +54,17 @@ ninja -v -C builddir
 
 %install
 DESTDIR=%{buildroot} ninja -C builddir install
-rm -rf %{buildroot}/usr/share/man
 mkdir -p %{buildroot}/{usr/share/xdg/waybar,usr/lib64}
 mv resources/* %{buildroot}/usr/share/xdg/waybar
 mv /usr/lib64/libspdlog.so* %{buildroot}/usr/lib64
+rm -rf %{buildroot}{/usr/share/man,/usr/include,/usr/lib64/pkgconfig}
+
 
 %files
 %defattr(-,root,root,-)
 /usr/bin/waybar
 /usr/lib/systemd/user/waybar.service
 /usr/lib64/libspdlog*
+/usr/lib64/libCatch2*
+/usr/lib64/libjsoncpp*
 /usr/share/xdg/waybar
