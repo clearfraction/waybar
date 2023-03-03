@@ -1,5 +1,5 @@
 Name     : waybar
-Version  : 0.9.16
+Version  : 0.9.17
 Release  : 1
 URL      : https://github.com/Alexays/Waybar
 Source0  : https://github.com/Alexays/Waybar/archive/refs/tags/%{version}.tar.gz
