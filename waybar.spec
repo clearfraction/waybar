@@ -31,7 +31,7 @@ BuildRequires :  pkgconfig(wayland-protocols)
 BuildRequires :  pkgconfig(xkbregistry)
 BuildRequires :  wayland-protocols-dev
 BuildRequires :  spdlog-dev
-BuildRequires :  libinotify-dev
+BuildRequires :  libnotify-dev
 BuildRequires :  buildreq-gnome
 BuildRequires :  buildreq-meson
 
