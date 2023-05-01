@@ -30,10 +30,7 @@ BuildRequires :  pkgconfig(wayland-cursor)
 BuildRequires :  pkgconfig(wayland-protocols)
 BuildRequires :  pkgconfig(xkbregistry)
 BuildRequires :  wayland-protocols-dev
-BuildRequires :  spdlog-dev
-BuildRequires :  libnotify-dev
-BuildRequires :  buildreq-gnome
-BuildRequires :  buildreq-meson
+
 
 %description
 Customizable Wayland bar for Sway and Wlroots based compositors
@@ -57,8 +54,8 @@ export CFLAGS="$CFLAGS -Ofast -fno-lto "
 export FCFLAGS="$FFLAGS -Ofast -fno-lto "
 export FFLAGS="$FFLAGS -Ofast -fno-lto "
 export CXXFLAGS="$CXXFLAGS -Ofast -fno-lto "
-#rpm -ivh --nodeps https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-1.10.0-11.x86_64.rpm https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-dev-1.10.0-11.x86_64.rpm https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-lib-1.10.0-11.x86_64.rpm
-CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson -Dsndio=disabled --libdir=lib64 --prefix=/usr --buildtype=plain   builddir
+rpm -ivh --nodeps https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-1.10.0-11.x86_64.rpm https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-dev-1.10.0-11.x86_64.rpm https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-lib-1.10.0-11.x86_64.rpm
+CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson -Dsndio=disabled -Dcpp_std=c++17 -Dtests=disabled -Dman-pages=disabled --libdir=lib64 --prefix=/usr --buildtype=plain   builddir
 ninja -v -C builddir
 
 %install
@@ -66,7 +63,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 mkdir -p %{buildroot}/{usr/share/xdg/waybar,usr/lib64}
 mv resources/* %{buildroot}/usr/share/xdg/waybar
 mv /usr/lib64/libspdlog.so* %{buildroot}/usr/lib64
-rm -rf %{buildroot}{/usr/share/man,/usr/include,/usr/lib64/pkgconfig}
+rm -rf %{buildroot}{/usr/include,/usr/lib64/pkgconfig}
 
 
 %files
@@ -74,6 +71,5 @@ rm -rf %{buildroot}{/usr/share/man,/usr/include,/usr/lib64/pkgconfig}
 /usr/bin/waybar
 /usr/lib/systemd/user/waybar.service
 /usr/lib64/libspdlog*
-/usr/lib64/libCatch2*
 /usr/lib64/libjsoncpp*
 /usr/share/xdg/waybar
