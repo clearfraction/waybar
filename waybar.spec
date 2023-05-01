@@ -53,10 +53,10 @@ export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -Ofast -ffat-lto-objects -flto=auto "
-export FCFLAGS="$FFLAGS -Ofast -ffat-lto-objects -flto=auto "
-export FFLAGS="$FFLAGS -Ofast -ffat-lto-objects -flto=auto "
-export CXXFLAGS="$CXXFLAGS -Ofast -ffat-lto-objects -flto=auto "
+export CFLAGS="$CFLAGS -Ofast -fno-lto "
+export FCFLAGS="$FFLAGS -Ofast -fno-lto "
+export FFLAGS="$FFLAGS -Ofast -fno-lto "
+export CXXFLAGS="$CXXFLAGS -Ofast -fno-lto "
 #rpm -ivh --nodeps https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-1.10.0-11.x86_64.rpm https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-dev-1.10.0-11.x86_64.rpm https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-lib-1.10.0-11.x86_64.rpm
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson -Dsndio=disabled --libdir=lib64 --prefix=/usr --buildtype=plain   builddir
 ninja -v -C builddir
