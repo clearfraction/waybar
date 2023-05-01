@@ -28,6 +28,7 @@ BuildRequires :  pkgconfig(wayland-cursor)
 BuildRequires :  pkgconfig(wayland-protocols)
 BuildRequires :  pkgconfig(xkbregistry)
 BuildRequires :  wayland-protocols-dev
+BuildRequires :  spdlog-dev
 
 %description
 Customizable Wayland bar for Sway and Wlroots based compositors
@@ -48,13 +49,13 @@ export CFLAGS="$CFLAGS -Ofast -ffat-lto-objects -flto=auto "
 export FCFLAGS="$FFLAGS -Ofast -ffat-lto-objects -flto=auto "
 export FFLAGS="$FFLAGS -Ofast -ffat-lto-objects -flto=auto "
 export CXXFLAGS="$CXXFLAGS -Ofast -ffat-lto-objects -flto=auto "
-rpm -ivh --nodeps https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-1.10.0-11.x86_64.rpm https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-dev-1.10.0-11.x86_64.rpm https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-lib-1.10.0-11.x86_64.rpm
+#rpm -ivh --nodeps https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-1.10.0-11.x86_64.rpm https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-dev-1.10.0-11.x86_64.rpm https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-lib-1.10.0-11.x86_64.rpm
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson -Dsndio=disabled --libdir=lib64 --prefix=/usr --buildtype=plain   builddir
 ninja -v -C builddir
 
 %install
 DESTDIR=%{buildroot} ninja -C builddir install
-mkdir -p %{buildroot}/{usr/share/xdg/waybar,usr/lib64}
+mkdir -p %{buildroot}/{usr/sharhttps://github.com/Alexays/Waybare/xdg/waybar,usr/lib64}
 mv resources/* %{buildroot}/usr/share/xdg/waybar
 mv /usr/lib64/libspdlog.so* %{buildroot}/usr/lib64
 rm -rf %{buildroot}{/usr/share/man,/usr/include,/usr/lib64/pkgconfig}
