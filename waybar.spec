@@ -31,6 +31,9 @@ BuildRequires :  pkgconfig(wayland-protocols)
 BuildRequires :  pkgconfig(xkbregistry)
 BuildRequires :  wayland-protocols-dev
 BuildRequires :  spdlog-dev
+BuildRequires :  libinotify-dev
+BuildRequires :  buildreq-gnome
+BuildRequires :  buildreq-meson
 
 %description
 Customizable Wayland bar for Sway and Wlroots based compositors
