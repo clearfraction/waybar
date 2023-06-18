@@ -1,10 +1,8 @@
 Name     : waybar
-Version  : 0.9.17
+Version  : 0.9.18
 Release  : 1
 URL      : https://github.com/Alexays/Waybar
 Source0  : https://github.com/Alexays/Waybar/archive/refs/tags/%{version}.tar.gz
-Patch0   : https://src.fedoraproject.org/rpms/waybar/raw/rawhide/f/waybar-0.9.17-test-fix-build-with-Catch2-v2.x.patch
-Patch1   : https://src.fedoraproject.org/rpms/waybar/raw/rawhide/f/waybar-0.9.17-fix-sway-add-missing-includes-for-GCC-13.patch
 Summary  : Customizable Wayland bar for Sway and Wlroots based compositors
 Group    : Development/Tools
 License  : MIT
@@ -37,8 +35,7 @@ Customizable Wayland bar for Sway and Wlroots based compositors
 
 %prep
 %setup -q -n Waybar-%{version}
-%patch0 -p1
-%patch1 -p1
+
 
 # fix resources path
 sed -i 's|"./resources/"|"./resources/", "/opt/3rd-party/bundles/clearfraction/usr/share/xdg/waybar"|g' src/config.cpp
@@ -55,7 +52,7 @@ export FCFLAGS="$FFLAGS -Ofast -fno-lto "
 export FFLAGS="$FFLAGS -Ofast -fno-lto "
 export CXXFLAGS="$CXXFLAGS -Ofast -fno-lto "
 rpm -ivh --nodeps https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-1.10.0-11.x86_64.rpm https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-dev-1.10.0-11.x86_64.rpm https://download.clearlinux.org/releases/37560/clear/x86_64/os/Packages/spdlog-lib-1.10.0-11.x86_64.rpm
-CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson -Dsndio=disabled -Dcpp_std=c++17 -Dtests=disabled -Dman-pages=disabled --libdir=lib64 --prefix=/usr --buildtype=plain   builddir
+CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson -Dsndio=disabled -Dcpp_std=c++17 -Dcava=disabled -Dtests=disabled -Dman-pages=disabled --libdir=lib64 --prefix=/usr --buildtype=plain   builddir
 ninja -v -C builddir
 
 %install
